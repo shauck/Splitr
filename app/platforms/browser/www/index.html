@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+        <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+        <meta name="format-detection" content="telephone=no">-->
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="node_modules/onsenui/css/onsenui.css">
+        <link rel="stylesheet" type="text/css" href="node_modules/onsenui/css/onsen-css-components-sunshine-theme.css">
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="node_modules/onsenui/js/onsenui.js"></script>   
+        <script type="text/javascript" src="js/scripts.js"></script> 
+        <title>Test Onsen</title>
+    </head>
+    <body>
+
+
+        <ons-tabbar id="tabbar" animation="slide" hide-tabs="false">
+        	<ons-tab icon="ion-android-list" page="main.html" active>
+        	</ons-tab>
+        	<ons-tab icon="ion-android-camera" page="messages.html">
+        	</ons-tab>
+        	<ons-tab icon="ion-android-checkbox-outline" page="result.html">
+        	</ons-tab>
+        	<ons-tab icon="ion-android-settings" page="settings.html">
+        	</ons-tab>
+        </ons-tabbar>
+
+        <ons-template id="home.html">
+        	<ons-page>
+        		<script type="text/javascript">
+        			document.GetElementById("tabbar").hide-tabs ="true";
+        		</script>
+        		<ons-toolbar>
+	              <div class="left">
+	                <ons-toolbar-button onclick="fn.open()">
+	                  <ons-icon icon="ion-android-person"></ons-icon>
+	                </ons-toolbar-button>
+	              </div>
+	              <div class="center" style="padding-right: 100px">
+	                Splitr
+	              </div>
+	              <div class="right">
+	              	<ons-toolbar-button>
+	              		<ons-icon icon="ion-android-settings"></ons-icon>
+	          		</ons-toolbar-button>
+	      		  </div>
+	            </ons-toolbar>
+	            <div style="justify-content: center;">
+	            	<ons-button id="split" modifier="large--quiet"> Split A New Check </ons-button>
+            	</div>
+        	</ons-page>
+    	</ons-template>
+
+        <ons-template id="main.html">
+          <ons-page>
+            <ons-toolbar>
+              <div class="center">
+                Splitr
+              </div>
+              <div class="right" style="padding-right: 15px;">
+              	<ons-icon icon="ion-android-done-all"></ons-icon>
+      		  </div>
+            </ons-toolbar>
+            	<div style="padding: 15px; padding-bottom: 15px;">
+            		<ons-row>
+            			<ons-col width="65%">
+            				Enter Receipt Id
+        				</ons-col>
+        				<ons-col width="35%">
+        					<ons-input type="number" id="receiptId" modifier="underbar"></ons-input>
+    					</ons-col>
+					</ons-row>
+				</div>
+
+
+            	<div style="padding: 15px; padding-bottom: 30px;">
+            		<ons-row>
+            			<ons-col width="65%">
+            				Number of People 
+        				</ons-col>
+        				<ons-col width="35%">
+        					<ons-input type="number" id="numOfPeople" modifier="underbar"></ons-input>
+    					</ons-col>
+					</ons-row>
+				</div>
+            	
+	            <div style="padding-right: 8px; padding-left: 8px; padding-top: 30px; padding-bottom: 30px">
+	            	<ons-row>
+		              <ons-col width="50%" style="padding-left: 3px; padding-right: 8px">
+		                <ons-input id="Item1" modifier="underbar" placeholder="Item" float></ons-input>
+		              </ons-col>
+		              <ons-col width="20%" style="padding-left: 3px; padding-right: 3px">
+		                <ons-input type="number" id="price1" modifier="underbar" placeholder="Price"></ons-input>
+		        	  </ons-col>
+	        	  	  <ons-col width="30%" style="padding-left: 8px; padding-right: 3px">
+		                <ons-input id="name1" placeholder="Name" float></ons-input>
+		              </ons-col>
+		          	</ons-row>
+	            </div>
+	          	<div style="padding-right: 8px; padding-left: 8px; padding-top: 30px; padding-bottom: 30px">
+	            	<ons-row>
+	              		<ons-col width="50%" style="padding-left: 3px; padding-right: 8px">
+	                		<ons-input id="item2" modifier="underbar" placeholder="Item" float></ons-input>
+	              		</ons-col>
+	              		<ons-col width="20%" style="padding-left: 3px; padding-right: 3px">
+	                		<ons-input type="number" id="price2" modifier="underbar" placeholder="Price"></ons-input>
+	        	  		</ons-col>
+	        	  		<ons-col width="30%" style="padding-left: 8px; padding-right: 3px">
+	                		<ons-input id="name2" placeholder="Name" float></ons-input>
+	              		</ons-col>
+	          		</ons-row>
+	          	</div>
+	          	<div style="padding-right: 8px; padding-left: 8px; padding-top: 30px; padding-bottom: 30px">
+	            	<ons-row>
+	              		<ons-col width="50%" style="padding-left: 3px; padding-right: 8px">
+	                		<ons-input id="item3" modifier="underbar" placeholder="Item" float></ons-input>
+	              		</ons-col>
+	              		<ons-col width="20%" style="padding-left: 3px; padding-right: 3px">
+	                		<ons-input type="number" id="price3" modifier="underbar" placeholder="Price"></ons-input>
+	        	  		</ons-col>
+	        	  		<ons-col width="30%" style="padding-left: 8px; padding-right: 3px">
+	                		<ons-input  id="name3" placeholder="Name" float></ons-input>
+	              		</ons-col>
+	          		</ons-row>
+	          	</div>
+			    <div style="padding-right: 8px; padding-left: 8px; padding-top: 30px; padding-bottom: 30px">
+	            	<ons-row>
+	              		<ons-col width="50%" style="padding-left: 3px; padding-right: 8px">
+	                		<ons-input id="item4" modifier="underbar" placeholder="Item" float></ons-input>
+	              		</ons-col>
+	              		<ons-col width="20%" style="padding-left: 3px; padding-right: 3px">
+	                		<ons-input type="number" id="price4" modifier="underbar" placeholder="Price"></ons-input>
+	        	  		</ons-col>
+	        	  		<ons-col width="30%" style="padding-left: 8px; padding-right: 3px">
+	                		<ons-input  id="name4" placeholder="Name" float></ons-input>
+	              		</ons-col>
+	          		</ons-row>
+	          	</div> 
+			    <div style="padding-right: 8px; padding-left: 8px; padding-top: 30px; padding-bottom: 30px">
+	            	<ons-row>
+	              		<ons-col width="50%" style="padding-left: 3px; padding-right: 8px">
+	                		<ons-input id="item5" modifier="underbar" placeholder="Item" float></ons-input>
+	              		</ons-col>
+	              		<ons-col width="20%" style="padding-left: 3px; padding-right: 3px">
+	                		<ons-input type="number" id="price5" modifier="underbar" placeholder="Price"></ons-input>
+	        	  		</ons-col>
+	        	  		<ons-col width="30%" style="padding-left: 8px; padding-right: 3px">
+	                		<ons-input id="name5" id="name5" placeholder="Name" float></ons-input>
+	              		</ons-col>
+	          		</ons-row>
+	          	</div>      
+	          	<div style="padding-right: 8px; padding-left: 8px; padding-top: 30px; padding-bottom: 30px">
+	            	<ons-row>
+	              		<ons-col width="50%" style="padding-left: 3px; padding-right: 8px">
+	                		<ons-input id="item6" modifier="underbar" placeholder="Item" float></ons-input>
+	              		</ons-col>
+	              		<ons-col width="20%" style="padding-left: 3px; padding-right: 3px">
+	                		<ons-input type="number" id="price6" modifier="underbar" placeholder="Price"></ons-input>
+	        	  		</ons-col>
+	        	  		<ons-col width="30%" style="padding-left: 8px; padding-right: 3px">
+	                		<ons-input id="name6" placeholder="Name" float></ons-input>
+	              		</ons-col>
+	          		</ons-row>
+	          	</div>
+	          	<div style="padding: 15px; padding-bottom: 15px;">
+            		<ons-row>
+            			<ons-col width="65%">
+            				Total Tax
+        				</ons-col>
+        				<ons-col width="35%">
+        					<ons-input type="number" id="receiptId" modifier="underbar"></ons-input>
+    					</ons-col>
+					</ons-row>
+				</div>
+			          
+	          <div style="padding-top: 15px; padding-right: 10px; padding-left: 10px; padding-bottom: 20px">
+	          	<ons-button id="billSave" modifier="large" onclick="addData()">Submit Check</ons-button>
+	          </div>
+          </ons-page>
+        </ons-template>
+
+        <ons-template id="messages.html">
+          <ons-page>
+            <ons-toolbar>
+              <div class="center">
+                Splitr
+              </div>
+              <div class="right" style="padding-right: 15px;">
+              	<ons-icon icon="ion-android-done-all"></ons-icon>
+      		  </div>
+            </ons-toolbar>
+            <div style="padding: 15px; padding-bottom: 15px;">
+        		<ons-row>
+        			<ons-col width="65%">
+        				Enter Receipt Id
+    				</ons-col>
+    				<ons-col width="35%">
+    					<ons-input type="number" id="photoReceiptId" modifier="underbar"></ons-input>
+					</ons-col>
+				</ons-row>
+			</div>
+            <div style="padding-top: 15px; padding-right: 10px; padding-left: 10px; padding-bottom: 20px; justify-content: center;">
+	          	<ons-button modifier="large" id="cameraPhoto">Take Photo</ons-button>
+          		<div id="photo">
+            		<img id="imageView" style="width: 100%; opacity: 50%; justify-content: center;">Image will be displayed here</img>
+      			</div>
+	          </div>
+	          <div style="padding-top: 15px; padding-right: 10px; padding-left: 10px; padding-bottom: 20px; justify-content: center;">
+	          	<ons-button modifier="large" id="sumbitPhoto">Submit Photo</ons-button>
+	          </div>
+          </ons-page>
+        </ons-template>
+
+        <ons-template id="settings.html">
+          <ons-page>
+            <ons-toolbar>
+              <div class="center">
+                Splitr
+              </div>
+              <div class="right" style="padding-right: 15px;">
+              	<ons-icon icon="ion-android-done-all"></ons-icon>
+      		  </div>
+            </ons-toolbar>
+            <div id="settingsPane">
+            	<ons-list>
+            		<ons-list-header> Settings </ons-list-header>
+            		<ons-list-item>
+            			<div class="center">
+            				Cookies
+        				</div>
+        				<div class="right">
+        					<ons-switch checked></ons-switch>
+    					</div>
+					</ons-list-item>
+					<ons-list-item>
+						<div class="center">
+							GPS
+						</div>
+						<div class="right">
+							<ons-switch></ons-switch>
+						</div>
+					</ons-list-item>
+					<ons-list-item>
+						<ons-row>
+      						<ons-col width="40px" style="text-align: center; line-height: 31px;">
+        						<ons-icon icon="md-volume-down"></ons-icon>
+      						</ons-col>
+  							<ons-col>
+        						<ons-range style="width: 100%;" value="25"></ons-range>
+      						</ons-col>
+      						<ons-col width="40px" style="text-align: center; line-height: 31px;">
+        						<ons-icon icon="md-volume-up"></ons-icon>
+      						</ons-col>
+						</ons-row>
+					</ons-list-item>
+				</ons-list>
+          </ons-page>
+        </ons-template>
+
+        <ons-template id="result.html">
+        	<ons-page>
+        		<ons-toolbar>
+              <div class="center">
+                Splitr
+              </div>
+              <div class="right" style="padding-right: 15px;">
+              	<ons-icon icon="ion-android-done-all"></ons-icon>
+      		  </div>
+            </ons-toolbar>
+				<div style="padding: 30px;">
+					<ons-row>
+						<ons-col width="75%">
+							<ons-input type="number" id="idSearch" modifier="underbar" placeholder="Search for a receipt ID"></ons-input>
+						</ons-col>
+						<ons-col width="25%" style="padding-right: 5px;">
+							<ons-button modifier="quiet" onclick="viewDataReceipt()"> Find Check </ons-button>
+						</ons-col>
+					</ons-row>
+				</div>
+
+				<ons-list id="resultList">
+					<ons-list-item modifier="longdivider">
+						<div class="center">
+							Ralph 
+						</div>
+						<div class="right">
+							$15.55
+						</div>
+					</ons-list-item>
+					<ons-list-item modifier="longdivider">
+						<div class="center">
+							Cindy 
+						</div>
+						<div class="right">
+							$12.50
+						</div>
+					</ons-list-item>
+					<ons-list-item modifier="longdivider">
+						<div class="center">
+							Bill 
+						</div>
+						<div class="right">
+							$18.99
+						</div>
+					</ons-list-item>
+					<ons-list-item modifier="longdivider">
+						<div class="center">
+							Sally 
+						</div>
+						<div class="right">
+							16.33
+						</div>
+					</ons-list-item>
+
+				</ons-list>
+				<div id="photo">
+					<img id="imageView" style="width: 100%; opacity: 50%; justify-content: center;"> Image will be displayed here. </img>
+				</div>
+
+				
+			</ons-page>
+		</ons-template>
+
+
+
+
+    	
+    </body>
+</html>
